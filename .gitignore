@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+.terraform
+
+/dist
+/dev
+
+package-lock.json
+*.log
+*.zip
+*.sublime-*
+/story-hub.iml
+.idea

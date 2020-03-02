@@ -1,0 +1,32 @@
+{
+    "extends": "eslint:recommended",
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "array-func",
+        "optimize-regex",
+        "promise"
+    ],
+
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+
+    "settings": {
+        "node": {
+            "tryExtensions": [
+                ".js",
+                ".json",
+                ".ts"
+            ]
+        }
+    },
+
+    "rules": {}
+}
