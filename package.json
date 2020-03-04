@@ -2,7 +2,7 @@
   "name": "@technik-sde/foxy",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/foxy.js",
   "types": "ts/src/index.d.ts",
   "scripts": {
     "build": "rm -rf dev; webpack",
