@@ -1,6 +1,7 @@
 const path = require("path"); // eslint-disable-line
 const TerserPlugin = require("terser-webpack-plugin"); // eslint-disable-line
 const PRODUCTION = process.env.NODE_ENV === "production";
+const DeclarationBundlerPlugin = require("declaration-bundler-webpack-plugin"); // eslint-disable-line
 
 const config = {
     entry: [
@@ -42,6 +43,13 @@ const config = {
             }
         ]
     },
+
+    plugins: [
+        new DeclarationBundlerPlugin({
+            moduleName: "foxy",
+            out: "./foxy.d.ts"
+        })
+    ],
 
     optimization: {
         minimizer: [new TerserPlugin()]
