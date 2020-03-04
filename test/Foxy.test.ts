@@ -1,6 +1,6 @@
 import "mocha";
 import { strict as assert } from "assert";
-import Foxy from "../../src/Foxy";
+import Foxy from "../src/Foxy";
 
 
 describe("Foxy", () => {
@@ -16,12 +16,12 @@ describe("Foxy", () => {
             const foxy = new Foxy({
                 handlers: [{
                     use: () => true,
-                    getImageURL: () => Promise.resolve("https://image")
+                    getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
                 }]
             });
 
             const url = await foxy.get("getImageURL", { url: "1234" });
-            assert.equal(url, "https://image");
+            assert.equal(url, "https://image/1234");
         });
 
         it("should pass request-object in use", async () => {
@@ -47,14 +47,14 @@ describe("Foxy", () => {
                         domain: "https://"
                     },
                     use: () => true,
-                    getImageURL() {
-                        return Promise.resolve(`${this.config.domain}image`);
+                    getImageURL(request) {
+                        return Promise.resolve(`${this.config.domain}image/${request.url}`);
                     }
                 }]
             });
 
             const url = await foxy.get("getImageURL", { url: "1234" });
-            assert.equal(url, "https://image");
+            assert.equal(url, "https://image/1234");
         });
 
         it("should only select handler returning 'true' on use", async () => {
@@ -66,13 +66,13 @@ describe("Foxy", () => {
                     },
                     {
                         use: () => true,
-                        getImageURL: () => Promise.resolve("https://image")
+                        getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
                     }
                 ]
             });
 
             const url = await foxy.get("getImageURL", { url: "1234" });
-            assert.equal(url, "https://image");
+            assert.equal(url, "https://image/1234");
         });
 
         it("should only select handler having requested method", async () => {
@@ -83,13 +83,13 @@ describe("Foxy", () => {
                     },
                     {
                         use: () => true,
-                        getImageURL: () => Promise.resolve("https://image")
+                        getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
                     }
                 ]
             });
 
             const url = await foxy.get("getImageURL", { url: "1234" });
-            assert.equal(url, "https://image");
+            assert.equal(url, "https://image/1234");
         });
     });
 });

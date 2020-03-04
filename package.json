@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "lint": "eslint test/**/* src/**/*",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha -r ts-node/register --require ./test/setup.ts test/unit/**/*.test.ts"
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha -r ts-node/register --require ./test/setup.ts test/**/*.test.ts"
   },
   "engines": {
     "node": ">=12.0.0"

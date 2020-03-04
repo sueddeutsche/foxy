@@ -1,1 +1,1 @@
-console.log("go");
+export { Foxy } from "./Foxy";

@@ -13,6 +13,17 @@ export default class Foxy {
         this.handlers = options.handlers || [];
     }
 
+    addHandler(handler: Handler, index = 0): void {
+        if (this.handlers[index] == null) {
+            this.handlers.push(handler);
+        }
+        this.handlers.splice(index, 0, handler);
+    }
+
+    removeHandler(handler: Handler): void {
+        this.handlers = this.handlers.filter(h => h !== handler);
+    }
+
     getImageURL(request: Request): Promise<string> {
         return this.get("getImageURL", request);
     }
@@ -27,6 +38,10 @@ export default class Foxy {
 
     getVideoInfo(request: Request): Promise<Info> {
         return this.get("getVideoInfo", request);
+    }
+
+    getURL(request: Request): Promise<string> {
+        return this.get("getURL", request);
     }
 
     get(methodName: string, request: Request): Promise<any> {
