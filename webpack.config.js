@@ -1,5 +1,5 @@
-const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin");
+const path = require("path"); // eslint-disable-line
+const TerserPlugin = require("terser-webpack-plugin"); // eslint-disable-line
 const PRODUCTION = process.env.NODE_ENV === "production";
 
 
@@ -13,7 +13,12 @@ const config = {
     devtool: PRODUCTION ? false : "source-map",
     stats: { children: false },
     output: {
-        path: path.resolve(__dirname, PRODUCTION ? "dist" : "dev")
+        path: path.resolve(__dirname, PRODUCTION ? "dist" : "dev"),
+        filename: 'foxy.js',
+        libraryTarget: 'umd',
+        library: 'foxy',
+        umdNamedDefine: true,
+        globalObject: `(typeof self !== 'undefined' ? self : this)`
     },
 
     resolve: {
