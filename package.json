@@ -1,9 +1,9 @@
 {
   "name": "@technik-sde/foxy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "dist/foxy.js",
-  "types": "dist/foxy.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dev; webpack",
     "dist": "rm -rf dist; NODE_ENV=production webpack -p",
@@ -25,7 +25,6 @@
     "@types/mocha": "7.0.1",
     "@typescript-eslint/eslint-plugin": "2.21.0",
     "@typescript-eslint/parser": "2.21.0",
-    "declaration-bundler-webpack-plugin": "smol/declaration-bundler-webpack-plugin",
     "eslint": "6.8.0",
     "eslint-plugin-array-func": "3.1.4",
     "eslint-plugin-node": "11.0.0",
@@ -40,6 +39,5 @@
     "typescript": "3.8.3",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
-  },
-  "dependencies": {}
+  }
 }
