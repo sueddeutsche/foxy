@@ -12,7 +12,7 @@
         "types": [],
         "lib": [
             "DOM",
-            "ES2019"
+            "ES2018"
         ]
     },
     "include": [

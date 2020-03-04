@@ -23,5 +23,11 @@ describe("Handler.unsplash", () => {
             assert.equal(info.width, 800);
             assert.equal(info.type, "jpg");
         });
+
+        it("should return modified image", async () => {
+            const info = await unsplashHandler.getImageInfo({ url: UNSPLASH_URL, width: 1200 });
+            assert.equal(info.width, 1200);
+            assert.equal(info.type, "jpg");
+        });
     });
 });
