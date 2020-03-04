@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "types": "ts/src/index.d.ts",
   "scripts": {
-    "build": "webpack",
+    "build": "rm -rf dev; webpack",
+    "dist": "rm -rf dist; NODE_ENV=production webpack -p",
     "lint": "eslint test/**/* src/**/*",
-    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha -r ts-node/register --require ./test/setup.ts test/**/*.test.ts"
+    "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha -r ts-node/register --require ./test/setup.ts 'test/**/*.test.ts'"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -27,12 +29,15 @@
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-optimize-regex": "1.1.7",
     "eslint-plugin-promise": "4.2.1",
+    "image-size": "^0.8.3",
     "mocha": "7.1.0",
+    "node-fetch": "^2.6.0",
     "terser-webpack-plugin": "2.3.5",
     "ts-loader": "6.2.1",
     "ts-node": "8.6.2",
     "typescript": "3.8.3",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
-  }
+  },
+  "dependencies": {}
 }

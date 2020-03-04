@@ -1,4 +1,4 @@
-import AnyObject from "./AnyObject";
+import AnyObject from "../AnyObject";
 
 
 export interface Request {

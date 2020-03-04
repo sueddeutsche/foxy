@@ -1,4 +1,4 @@
-import Handler, { Request, Info } from "./Handler";
+import Handler, { Request, Info } from "./handler/Handler";
 
 
 export interface Options {
