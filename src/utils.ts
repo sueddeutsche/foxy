@@ -9,7 +9,7 @@ function loadImageInfo(url: string): Promise<{ type: string; width: number; heig
     return fetch(url)
         .then(response => response.blob())
         .then(imageBlob => {
-            result.type = imageBlob.type.replace(/^[/]+\//, "");
+            result.type = imageBlob.type.replace(/^[^/]+\//, "");
             return URL.createObjectURL(imageBlob);
         })
         .then(imageSrc => {
