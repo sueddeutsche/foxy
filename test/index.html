@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+
+    <head>
+
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- <link href="project.css" rel="stylesheet" type="text/css" /> -->
+        <style type="text/css">
+
+            * {
+
+                margin:             0;
+                padding:            0;
+            }
+
+        </style>
+
+        <script type="text/javascript" src="../dist/foxy.js"></script>
+        <script type="text/javascript">
+            console.log("Foxy", );
+            const proxy = new foxy.Foxy({
+                handlers: [foxy.handler.unsplash]
+            });
+            proxy
+                .getImageInfo({
+                    url: "https://images.unsplash.com/photo-1583255448430-17c5eda08e5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                }).then(info => {
+                    console.log("image", info.type, info.width, info.height);
+                    document.body.appendChild(info.image);
+                })
+        </script>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>

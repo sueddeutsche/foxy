@@ -1,5 +1,9 @@
 {
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "@typescript-eslint",
@@ -16,7 +20,8 @@
 
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
 
     "settings": {
@@ -27,5 +32,10 @@
                 ".ts"
             ]
         }
+    },
+
+    "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-ts-ignore": "off"
     }
 }

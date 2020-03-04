@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "declaration": false,
         "outDir": "./ts/",
         "module": "es2015",
         "target": "es2015",
@@ -15,20 +16,6 @@
         ]
     },
     "include": [
-        "app/**/*",
-        "test/**/*",
-        "node_modules/@technik-sde/*/src/**/*",
-        "node_modules/@technik-sde/*/lib/**/*",
-        "node_modules/@technik-sde/sz.cms-story-prosemirror/editron-taglist-editor/**/*",
-        "node_modules/@technik-sde/sz.cms-story-lib/**/*",
-        "node_modules/editron/**/*"
-    ],
-    "exclude": [
-        "node_modules/@technik-sde/sz.cms-aws-scripts/**/*",
-        "node_modules/@technik-sde/sz.cms-buto/**/*",
-        "node_modules/**/*.test.ts",
-        "node_modules/**/*.test.js",
-        "node_modules/editron/build/*",
-        "**/webpack.*.js"
+        "src/**/*"
     ]
 }
