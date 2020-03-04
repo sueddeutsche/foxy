@@ -5,9 +5,30 @@ import utils from "../utils";
 const isUnsplashImage = /^https:\/\/images\.unsplash\.com\/photo-\d{13}-[0-9a-f]{12}/;
 
 
+export interface Parameters {
+    width?: number;
+    height?: number;
+    fit?: string;
+    quality?: number;
+    auto?: string;
+}
+
+function parseURL(url: string): Parameters {
+    const result = {} as Parameters;
+    const params = new URLSearchParams(url);
+    if (params.has("w")) result.width = parseInt(params.get("w"));
+    if (params.has("h")) result.height = parseInt(params.get("h"));
+    if (params.has("fit")) result.fit = params.get("fit");
+    if (params.has("q")) result.quality = parseInt(params.get("q"));
+    if (params.has("auto")) result.auto = params.get("auto");
+    return result;
+}
+
+
 export default {
     use: request => isUnsplashImage.test(request.url),
-    getImageUrl(request) {
+    parseURL,
+    getImageURL(request) {
         return Promise.resolve(request.url);
     },
     getImageInfo(request) {
