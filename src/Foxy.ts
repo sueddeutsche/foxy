@@ -1,5 +1,4 @@
-import Handler, { Request, URLRequest, Info } from "./Handler";
-import AnyObject from "./AnyObject";
+import Handler, { Request, Info } from "./Handler";
 
 
 export interface Options {
@@ -30,17 +29,17 @@ export default class Foxy {
         return this.get("getVideoInfo", request);
     }
 
-    get(requestId: string, request: Request) {
-        const handler = this.findHandler(requestId, request);
+    get(methodName: string, request: Request): Promise<any> {
+        const handler = this.findHandler(methodName, request);
         if (handler == null) {
-            throw new Error(`There is no handler for request '${requestId}(${JSON.stringify(request)})'`);
+            throw new Error(`There is no handler for method '${methodName}(${JSON.stringify(request)})'`);
         }
-        return handler[requestId](request);
+        return handler[methodName](request);
     }
 
-    private findHandler(requestId: string, request: Request) {
-        for (let handler of this.handlers) {
-            if (typeof handler[requestId] === "function" && handler.use(request) === true) {
+    private findHandler(methodName: string, request: Request): Handler {
+        for (const handler of this.handlers) {
+            if (typeof handler[methodName] === "function" && handler.use(request) === true) {
                 return handler;
             }
         }
