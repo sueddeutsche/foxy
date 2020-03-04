@@ -43,4 +43,5 @@ export default {
     getImageInfo(request) {
         return utils.loadImageInfo(getURL(request));
     }
+
 } as Handler;

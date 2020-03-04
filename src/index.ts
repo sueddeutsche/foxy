@@ -1,9 +1,11 @@
 import unsplash from "./handler/unsplash";
 import image from "./handler/imageHandler";
+import video from "./handler/videoHandler";
 
 const handler = {
     unsplash,
-    image
+    image,
+    video
 };
 
 export { default as Foxy } from "./Foxy";
