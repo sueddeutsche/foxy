@@ -20,7 +20,17 @@
 
         <script type="text/javascript" src="../dist/foxy.js"></script>
         <script type="text/javascript">
-            console.log("Foxy", new foxy.Foxy());
+            console.log("Foxy", );
+            const proxy = new foxy.Foxy({
+                handlers: [foxy.handler.unsplash]
+            });
+            proxy
+                .getImageInfo({
+                    url: "https://images.unsplash.com/photo-1583255448430-17c5eda08e5c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                }).then(info => {
+                    console.log("image", info.type, info.width, info.height);
+                    document.body.appendChild(info.image);
+                })
         </script>
 
     </head>
