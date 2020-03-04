@@ -1,3 +1,12 @@
+import AnyObject from "./AnyObject";
+import Handler from "./handler/Handler";
+
+
+export function isHandler(handler): handler is Handler {
+    return Object.prototype.toString.call(handler) === "[object Object]" && typeof handler.use === "function";
+}
+
+
 export interface ImageInfo {
     type: string;
     width: number;
@@ -5,7 +14,7 @@ export interface ImageInfo {
     image: HTMLImageElement;
 }
 
-function loadImageInfo(url: string): Promise<ImageInfo> {
+function loadImageInfo(url: string, fetchOptions: AnyObject = {}): Promise<ImageInfo> {
     const result = {
         image: new Image(),
         type: "",
@@ -13,7 +22,7 @@ function loadImageInfo(url: string): Promise<ImageInfo> {
         height: 0
     };
 
-    return fetch(url)
+    return fetch(url, fetchOptions)
         .then(response => response.blob())
         .then(imageBlob => {
             result.type = imageBlob.type.replace(/^[^/]+\//, "");
@@ -43,7 +52,7 @@ export interface VideoInfo {
 }
 
 
-function loadVideoInfo(url: string): Promise<VideoInfo> {
+function loadVideoInfo(url: string, fetchOptions: AnyObject = {}): Promise<VideoInfo> {
     const result = {
         type: "",
         width: 0,
@@ -53,7 +62,7 @@ function loadVideoInfo(url: string): Promise<VideoInfo> {
         poster: ""
     };
 
-    return fetch(url)
+    return fetch(url, fetchOptions)
         .then(response => response.blob())
         .then(imageBlob => {
             result.type = imageBlob.type.replace(/^[^/]+\//, "");

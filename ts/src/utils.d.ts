@@ -1,3 +1,5 @@
+import Handler from "./handler/Handler";
+export declare function isHandler(handler: any): handler is Handler;
 export interface ImageInfo {
     type: string;
     width: number;
