@@ -87,5 +87,24 @@ const json = await proxy.get("getJSON", { url: "my-json-url" });
 ```
 
 
+## Handlers
+
+Currently three example handlers are exported with this module. They probably should not be used in production:
+
+- unsplash: allowing modification of query params to load images from unsplash.com
+- image: default image handler, to load image-urls and metadata
+- video: crude video handler to get video-type, dimensions and duration as metadata
+
+Import these handlers with
+
+```js
+import { handler } from "technik-sde/foxy";
+
+// handler.unsplash
+// handler.image
+// handler.video
+
+
+
 
 
