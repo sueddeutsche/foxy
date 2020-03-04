@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "declaration": true,
+        "declaration": false,
         "outDir": "./ts/",
         "module": "es2015",
         "target": "es2015",

@@ -2,7 +2,6 @@ const path = require("path"); // eslint-disable-line
 const TerserPlugin = require("terser-webpack-plugin"); // eslint-disable-line
 const PRODUCTION = process.env.NODE_ENV === "production";
 
-
 const config = {
     entry: [
         "./src/index.ts"
@@ -35,7 +34,8 @@ const config = {
                     options: {
                         configFile: path.resolve(__dirname, "tsconfig.json"),
                         compilerOptions: {
-                            sourceMap: !PRODUCTION
+                            sourceMap: !PRODUCTION,
+                            declaration: PRODUCTION
                         }
                     }
                 }
