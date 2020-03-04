@@ -1,5 +1,5 @@
 {
-  "name": "@technik-sde/frontend-proxy",
+  "name": "@technik-sde/foxy",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
