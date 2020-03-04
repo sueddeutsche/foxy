@@ -1,10 +1,10 @@
-declare function loadImage(url: string): Promise<{
+declare function loadImageInfo(url: string): Promise<{
     type: string;
     width: number;
     height: number;
     image: HTMLImageElement;
 }>;
 declare const _default: {
-    loadImage: typeof loadImage;
+    loadImageInfo: typeof loadImageInfo;
 };
 export default _default;
