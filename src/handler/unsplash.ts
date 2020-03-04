@@ -11,6 +11,6 @@ export default {
         return Promise.resolve(request.url);
     },
     getImageInfo(request) {
-        return utils.loadImage(request.url);
+        return utils.loadImageInfo(request.url);
     }
 } as Handler;

@@ -1,4 +1,4 @@
-function loadImage(url: string): Promise<{ type: string; width: number; height: number; image: HTMLImageElement }> {
+function loadImageInfo(url: string): Promise<{ type: string; width: number; height: number; image: HTMLImageElement }> {
     const result = {
         image: new Image(),
         type: "",
@@ -28,5 +28,5 @@ function loadImage(url: string): Promise<{ type: string; width: number; height: 
 
 
 export default {
-    loadImage
+    loadImageInfo
 }

@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import sizeOf from "image-size";
 
 
-function loadImageNodeJS(url: string): Promise<{ width: number; height: number; type: string }> {
+function loadImageInfoNodeJS(url: string): Promise<{ width: number; height: number; type: string }> {
     return fetch(url)
         .then(res => res.buffer())
         // @ts-ignore
@@ -11,4 +11,4 @@ function loadImageNodeJS(url: string): Promise<{ width: number; height: number; 
 }
 
 // @ts-ignore
-utils.loadImage = loadImageNodeJS
+utils.loadImageInfo = loadImageInfoNodeJS
