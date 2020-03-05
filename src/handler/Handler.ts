@@ -7,8 +7,6 @@ export interface Request {
 }
 
 export interface Info {
-    width: number;
-    height: number;
     [p: string]: any;
 }
 
