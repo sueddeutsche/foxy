@@ -8,6 +8,7 @@ export function isHandler(handler): handler is Handler {
 
 
 export interface ImageInfo {
+    src: string;
     type: string;
     width: number;
     height: number;
@@ -16,11 +17,12 @@ export interface ImageInfo {
 
 function loadImageInfo(url: string, fetchOptions: AnyObject = {}): Promise<ImageInfo> {
     const result = {
+        src: url,
         image: new Image(),
         type: "",
         width: 0,
         height: 0
-    };
+    } as ImageInfo;
 
     return fetch(url, fetchOptions)
         .then(response => response.blob())
@@ -43,7 +45,8 @@ function loadImageInfo(url: string, fetchOptions: AnyObject = {}): Promise<Image
 }
 
 export interface VideoInfo {
-    type: string;
+    src: string;
+    type?: string;
     width: number;
     height: number;
     video: HTMLVideoElement;
@@ -54,13 +57,13 @@ export interface VideoInfo {
 
 function loadVideoInfo(url: string, fetchOptions: AnyObject = {}): Promise<VideoInfo> {
     const result = {
-        type: "",
+        src: url,
         width: 0,
         height: 0,
         video: document.createElement("video"),
         duration: 0,
         poster: ""
-    };
+    } as VideoInfo;
 
     return fetch(url, fetchOptions)
         .then(response => response.blob())
