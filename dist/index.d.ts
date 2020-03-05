@@ -1,8 +1,9 @@
+import Foxy, { Options } from "./Foxy";
+import utils from "./utils";
+import Handler from "./handler/Handler";
 declare const handler: {
-    unsplash: import("./handler/Handler").default;
-    image: import("./handler/Handler").default;
-    video: import("./handler/Handler").default;
+    unsplash: Handler;
+    image: Handler;
+    video: Handler;
 };
-export { default as Foxy } from "./Foxy";
-export { default as utils } from "./utils";
-export { handler };
+export { Foxy, Options, Handler, handler, utils };
