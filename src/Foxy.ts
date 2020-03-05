@@ -47,7 +47,8 @@ export default class Foxy {
     get(methodName: string, request: Request): Promise<any> {
         const handler = this.findHandler(methodName, request);
         if (handler == null) {
-            throw new Error(`There is no handler for method '${methodName}(${JSON.stringify(request)})'`);
+            return Promise
+                .reject(new Error(`There is no handler for method '${methodName}(${JSON.stringify(request)})'`));
         }
         return handler[methodName](request);
     }
