@@ -1,7 +1,8 @@
 import AnyObject from "./AnyObject";
 import Handler from "./handler/Handler";
-export declare function isHandler(handler: any): handler is Handler;
+declare function isHandler(handler: any): handler is Handler;
 export interface ImageInfo {
+    src: string;
     type: string;
     width: number;
     height: number;
@@ -9,7 +10,8 @@ export interface ImageInfo {
 }
 declare function loadImageInfo(url: string, fetchOptions?: AnyObject): Promise<ImageInfo>;
 export interface VideoInfo {
-    type: string;
+    src: string;
+    type?: string;
     width: number;
     height: number;
     video: HTMLVideoElement;
@@ -20,5 +22,6 @@ declare function loadVideoInfo(url: string, fetchOptions?: AnyObject): Promise<V
 declare const _default: {
     loadImageInfo: typeof loadImageInfo;
     loadVideoInfo: typeof loadVideoInfo;
+    isHandler: typeof isHandler;
 };
 export default _default;
