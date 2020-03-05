@@ -2,7 +2,7 @@ import AnyObject from "./AnyObject";
 import Handler from "./handler/Handler";
 
 
-export function isHandler(handler): handler is Handler {
+function isHandler(handler): handler is Handler {
     return Object.prototype.toString.call(handler) === "[object Object]" && typeof handler.use === "function";
 }
 
@@ -93,5 +93,6 @@ function loadVideoInfo(url: string, fetchOptions: AnyObject = {}): Promise<Video
 
 export default {
     loadImageInfo,
-    loadVideoInfo
+    loadVideoInfo,
+    isHandler
 }
