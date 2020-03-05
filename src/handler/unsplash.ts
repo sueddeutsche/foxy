@@ -31,7 +31,7 @@ export function getURL(request: Request): string {
     if (request.height) params.set("h", request.height);
     if (request.quality) params.set("q", request.quality);
     if (request.fit) params.set("fit", request.fit);
-    if (request.auto) params.set("fit", request.auto);
+    if (request.auto) params.set("auto", request.auto);
     return `${baseURL}?${params.toString()}`;
 }
 
