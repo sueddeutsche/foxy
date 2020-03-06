@@ -53,11 +53,12 @@ export default class Foxy {
         return handler[methodName](request);
     }
 
-    private findHandler(methodName: string, request: Request): Handler {
-        for (const handler of this.handlers) {
-            if (typeof handler[methodName] === "function" && handler.use(request) === true) {
-                return handler;
-            }
-        }
+    isSupported(request: Request): boolean {
+        return this.handlers.some(handler => handler.use(request));
+    }
+
+    findHandler(methodName: string, request: Request): Handler {
+        return this.handlers
+            .find(handler => typeof handler[methodName] === "function" && handler.use(request) === true);
     }
 }

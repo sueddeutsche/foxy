@@ -13,5 +13,6 @@ export default class Foxy {
     getVideoInfo(request: Request): Promise<Info>;
     getURL(request: Request): Promise<string>;
     get(methodName: string, request: Request): Promise<any>;
-    private findHandler;
+    isSupported(request: Request): boolean;
+    findHandler(methodName: string, request: Request): Handler;
 }
