@@ -7,9 +7,11 @@ describe("Foxy", () => {
 
     describe("get", () => {
 
-        it("should throw if no handler with 'methodName' is registered", () => {
+        it("should return error if no handler with 'methodName' is registered", async () => {
             const foxy = new Foxy();
-            assert.throws(() => foxy.get("url", { url: "1234" }));
+            await foxy.get("url", { url: "1234" })
+                .then(() => assert.fail("promise should have aborted"))
+                .catch(e => assert.ok(e instanceof Error))
         });
 
         it("should call 'methodName' of handler", async () => {

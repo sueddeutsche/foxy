@@ -4,8 +4,6 @@ export interface Request {
     [p: string]: any;
 }
 export interface Info {
-    width: number;
-    height: number;
     [p: string]: any;
 }
 export declare type URLRequest = (request: Request) => Promise<string>;
