@@ -25,8 +25,8 @@ export function parseURL(url: string): Parameters {
 }
 
 export function getURL(request: Request): string {
-    const baseURL = request.url.replace(/\?.*$/, "");
-    const params = new URLSearchParams(request.url.replace(/^.*\?/, ""));
+    const baseURL = request.source.replace(/\?.*$/, "");
+    const params = new URLSearchParams(request.source.replace(/^.*\?/, ""));
     if (request.width) params.set("w", request.width);
     if (request.height) params.set("h", request.height);
     if (request.quality) params.set("q", request.quality);
@@ -36,7 +36,7 @@ export function getURL(request: Request): string {
 }
 
 export default {
-    use: request => isUnsplashImage.test(request.url),
+    use: request => isUnsplashImage.test(request.source),
     getImageURL(request) {
         return Promise.resolve(getURL(request));
     },

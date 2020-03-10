@@ -7,7 +7,7 @@
 `yarn add @technik-sde/foxy`
 
 
-**Handler** A handler registers its methods for a specific request-object, containing an url-property. The handler will be selected for the exposed request-method, when its function `use(RequestObject):boolean` returns `true`.
+**Handler** A handler registers its methods for a specific request-object, containing a `source`-property. The handler will be selected for the exposed request-method, when its function `use(RequestObject):boolean` returns `true`.
 
 
 ## Usage
@@ -18,21 +18,21 @@ import { Foxy, utils } from "technik-sde/foxy";
 const proxy = new Foxy({
   handlers: [
     {
-      use({ url }) {
-        return myUrlFormat.test(url);
+      use({ source }) {
+        return myUrlFormat.test(source);
       },
-      getImageURL({ url }) {
-        return Promise.resolve(buildMyUrlScheme(url));
+      getImageURL({ source }) {
+        return Promise.resolve(buildMyUrlScheme(source));
       },
-      getImageInfo({ url }) {
-        return utils.loadImage(buildMyUrlScheme(url))
+      getImageInfo({ source }) {
+        return utils.loadImage(buildMyUrlScheme(source))
       }
     }
   ]
 });
 
-const finalUrl = await proxy.getImageURL({ url: 1234 });
-const imageMetadata = await proxy.getImageInfo({ url: 1234 });
+const finalUrl = await proxy.getImageURL({ source: 1234 });
+const imageMetadata = await proxy.getImageInfo({ source: 1234 });
 ```
 
 
@@ -44,22 +44,22 @@ import { Foxy } from "technik-sde/foxy";
 const proxy = new Foxy({
   handlers: [
     {
-      use({ url }) {
-        return myUrlFormat.test(url);
+      use({ source }) {
+        return myUrlFormat.test(source);
       },
-      getImageURL({ url }) {
-        return Promise.resolve(buildMyUrlScheme(url));
+      getImageURL({ source }) {
+        return Promise.resolve(buildMyUrlScheme(source));
       }
     },
     {
       use: () => true,
       // overwrites default exception to always return false
-      getImageURL({ url }) { return Promise.resolve(false); } 
+      getImageURL({ source }) { return Promise.resolve(false); } 
     }
   ]
 });
 
-const finalUrl = await proxy.getImageURL({ url: "abc" }); // false, when not myUrlFormat
+const finalUrl = await proxy.getImageURL({ source: "abc" }); // false, when not myUrlFormat
 ```
 
 
@@ -73,17 +73,17 @@ import { Foxy } from "technik-sde/foxy";
 const proxy = new Foxy({
   handlers: [
     {
-      use({ url }) {
-        return myUrlFormat.test(url);
+      use({ source }) {
+        return myUrlFormat.test(source);
       },
-      getJSON({ url }) {
-        return fetch(buildMyUrlScheme(url)).then(response => response.json());
+      getJSON({ source }) {
+        return fetch(buildMyUrlScheme(source)).then(response => response.json());
       }
     }
   ]
 });
 
-const json = await proxy.get("getJSON", { url: "my-json-url" });
+const json = await proxy.get("getJSON", { source: "my-json-url" });
 ```
 
 
