@@ -1,6 +1,6 @@
 {
   "name": "@technik-sde/foxy",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/foxy.js",
   "types": "dist/index.d.ts",

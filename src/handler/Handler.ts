@@ -1,9 +1,8 @@
 import AnyObject from "../AnyObject";
 
 
-export interface Request {
-    url: string;
-    [p: string]: any;
+export interface Request extends AnyObject {
+    source: string;
 }
 
 export interface Info {

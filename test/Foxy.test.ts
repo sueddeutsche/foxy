@@ -9,7 +9,7 @@ describe("Foxy", () => {
 
         it("should return error if no handler with 'methodName' is registered", async () => {
             const foxy = new Foxy();
-            await foxy.get("url", { url: "1234" })
+            await foxy.get("url", { source: "1234" })
                 .then(() => assert.fail("promise should have aborted"))
                 .catch(e => assert.ok(e instanceof Error))
         });
@@ -18,11 +18,11 @@ describe("Foxy", () => {
             const foxy = new Foxy({
                 handlers: [{
                     use: () => true,
-                    getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
+                    getImageURL: (request) => Promise.resolve(`https://image/${request.source}`)
                 }]
             });
 
-            const url = await foxy.get("getImageURL", { url: "1234" });
+            const url = await foxy.get("getImageURL", { source: "1234" });
             assert.equal(url, "https://image/1234");
         });
 
@@ -31,14 +31,14 @@ describe("Foxy", () => {
             const foxy = new Foxy({
                 handlers: [{
                     use: (request) => {
-                       url = request.url;
+                       url = request.source;
                        return true;
                     },
                     getImageURL: () => Promise.resolve("https://image")
                 }]
             });
 
-            await foxy.get("getImageURL", { url: "1234" });
+            await foxy.get("getImageURL", { source: "1234" });
             assert.equal(url, "1234");
         });
 
@@ -50,12 +50,12 @@ describe("Foxy", () => {
                     },
                     use: () => true,
                     getImageURL(request) {
-                        return Promise.resolve(`${this.config.domain}image/${request.url}`);
+                        return Promise.resolve(`${this.config.domain}image/${request.source}`);
                     }
                 }]
             });
 
-            const url = await foxy.get("getImageURL", { url: "1234" });
+            const url = await foxy.get("getImageURL", { source: "1234" });
             assert.equal(url, "https://image/1234");
         });
 
@@ -68,12 +68,12 @@ describe("Foxy", () => {
                     },
                     {
                         use: () => true,
-                        getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
+                        getImageURL: (request) => Promise.resolve(`https://image/${request.source}`)
                     }
                 ]
             });
 
-            const url = await foxy.get("getImageURL", { url: "1234" });
+            const url = await foxy.get("getImageURL", { source: "1234" });
             assert.equal(url, "https://image/1234");
         });
 
@@ -85,12 +85,12 @@ describe("Foxy", () => {
                     },
                     {
                         use: () => true,
-                        getImageURL: (request) => Promise.resolve(`https://image/${request.url}`)
+                        getImageURL: (request) => Promise.resolve(`https://image/${request.source}`)
                     }
                 ]
             });
 
-            const url = await foxy.get("getImageURL", { url: "1234" });
+            const url = await foxy.get("getImageURL", { source: "1234" });
             assert.equal(url, "https://image/1234");
         });
     });
