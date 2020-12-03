@@ -22,3 +22,4 @@ export {
     utils
 };
 
+export default Foxy;

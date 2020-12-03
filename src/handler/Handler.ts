@@ -9,9 +9,15 @@ export interface Info {
     [p: string]: any;
 }
 
+export interface Data {
+    [p: string]: any;
+}
+
 export type URLRequest = (request: Request) => Promise<string>;
 
 export type InfoRequest = (request: Request) => Promise<Info>;
+
+export type DataRequest = (request: Request) => Promise<Data>;
 
 export default interface Handler extends AnyObject {
     /** returns true, if this handler should be used for the current input-request  */
@@ -26,4 +32,6 @@ export default interface Handler extends AnyObject {
     getVideoInfo?: InfoRequest;
     /** returns a generic json-URL */
     getURL?: URLRequest;
+    /** returns json-response of the request url */
+    getJSON?: DataRequest;
 }

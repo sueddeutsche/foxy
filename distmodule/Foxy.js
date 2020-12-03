@@ -1,54 +1,35 @@
-import Handler, { Request, Info, Data } from "./handler/Handler";
-
-
-export interface Options {
-    handlers?: Array<Handler>;
-}
-
-
 export default class Foxy {
-    handlers;
-
-    constructor(options: Options = {}) {
+    constructor(options = {}) {
         this.handlers = options.handlers || [];
     }
-
-    addHandler(handler: Handler, index = 0): void {
+    addHandler(handler, index = 0) {
         if (this.handlers[index] == null) {
             this.handlers.push(handler);
         }
         this.handlers.splice(index, 0, handler);
     }
-
-    removeHandler(handler: Handler): void {
+    removeHandler(handler) {
         this.handlers = this.handlers.filter(h => h !== handler);
     }
-
-    getImageURL(request: Request): Promise<string> {
+    getImageURL(request) {
         return this.get("getImageURL", request);
     }
-
-    getImageInfo(request: Request): Promise<Info> {
+    getImageInfo(request) {
         return this.get("getImageInfo", request);
     }
-
-    getVideoURL(request: Request): Promise<string> {
+    getVideoURL(request) {
         return this.get("getVideoURL", request);
     }
-
-    getVideoInfo(request: Request): Promise<Info> {
+    getVideoInfo(request) {
         return this.get("getVideoInfo", request);
     }
-
-    getURL(request: Request): Promise<string> {
+    getURL(request) {
         return this.get("getURL", request);
     }
-
-    getJSON(request: Request): Promise<Data> {
+    getJSON(request) {
         return this.get("getJSON", request);
     }
-
-    get(methodName: string, request: Request): Promise<any> {
+    get(methodName, request) {
         const handler = this.findHandler(methodName, request);
         if (handler == null) {
             return Promise
@@ -56,12 +37,10 @@ export default class Foxy {
         }
         return handler[methodName](request);
     }
-
-    isSupported(request: Request): boolean {
+    isSupported(request) {
         return this.handlers.some(handler => handler.use(request));
     }
-
-    findHandler(methodName: string, request: Request): Handler {
+    findHandler(methodName, request) {
         return this.handlers
             .find(handler => typeof handler[methodName] === "function" && handler.use(request) === true);
     }

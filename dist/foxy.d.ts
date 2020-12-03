@@ -1,4 +1,4 @@
-import Handler, { Request, Info } from "./handler/Handler";
+import Handler, { Request, Info, Data } from "./handler/Handler";
 export interface Options {
     handlers?: Array<Handler>;
 }
@@ -12,6 +12,7 @@ export default class Foxy {
     getVideoURL(request: Request): Promise<string>;
     getVideoInfo(request: Request): Promise<Info>;
     getURL(request: Request): Promise<string>;
+    getJSON(request: Request): Promise<Data>;
     get(methodName: string, request: Request): Promise<any>;
     isSupported(request: Request): boolean;
     findHandler(methodName: string, request: Request): Handler;
