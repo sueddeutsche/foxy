@@ -1,4 +1,4 @@
-import Handler, { Request, Info } from "./handler/Handler";
+import Handler, { Request, Info, Data } from "./handler/Handler";
 
 
 export interface Options {
@@ -42,6 +42,10 @@ export default class Foxy {
 
     getURL(request: Request): Promise<string> {
         return this.get("getURL", request);
+    }
+
+    getJSON(request: Request): Promise<Data> {
+        return this.get("getJSON", request);
     }
 
     get(methodName: string, request: Request): Promise<any> {

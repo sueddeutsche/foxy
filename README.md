@@ -17,17 +17,17 @@ import { Foxy, utils } from "technik-sde/foxy";
 
 const proxy = new Foxy({
   handlers: [
-    {
-      use({ source }) {
-        return myUrlFormat.test(source);
-      },
-      getImageURL({ source }) {
-        return Promise.resolve(buildMyUrlScheme(source));
-      },
-      getImageInfo({ source }) {
-        return utils.loadImage(buildMyUrlScheme(source))
-      }
+  {
+    use({ source }) {
+      return myUrlFormat.test(source);
+    },
+    getImageURL({ source }) {
+      return Promise.resolve(buildMyUrlScheme(source));
+    },
+    getImageInfo({ source }) {
+      return utils.loadImage(buildMyUrlScheme(source))
     }
+  }
   ]
 });
 
@@ -43,19 +43,19 @@ import { Foxy } from "technik-sde/foxy";
 
 const proxy = new Foxy({
   handlers: [
-    {
-      use({ source }) {
-        return myUrlFormat.test(source);
-      },
-      getImageURL({ source }) {
-        return Promise.resolve(buildMyUrlScheme(source));
-      }
+  {
+    use({ source }) {
+      return myUrlFormat.test(source);
     },
-    {
-      use: () => true,
-      // overwrites default exception to always return false
-      getImageURL({ source }) { return Promise.resolve(false); } 
+    getImageURL({ source }) {
+      return Promise.resolve(buildMyUrlScheme(source));
     }
+  },
+  {
+    use: () => true,
+    // overwrites default exception to always return false
+    getImageURL({ source }) { return Promise.resolve(false); } 
+  }
   ]
 });
 
@@ -63,27 +63,27 @@ const finalUrl = await proxy.getImageURL({ source: "abc" }); // false, when not 
 ```
 
 
-Per default the following methods are supported via api: `getImageURL`, `getImageInfo`, `getVideoURL`, `getVideoInfo`. The 
-generic method `get(methodName: string, requestData: AnyObject)` may be used to access any custom methods defined on
-handlers. e.g.
+Per default the following methods are supported via api: `getImageURL`, `getImageInfo`, `getVideoURL`, `getVideoInfo`, 
+`getURL` and `getJSON`. The generic method `get(methodName: string, requestData: AnyObject)` may be used to access any 
+custom methods defined on handlers. e.g.
 
 ```js
 import { Foxy } from "technik-sde/foxy";
 
 const proxy = new Foxy({
   handlers: [
-    {
-      use({ source }) {
-        return myUrlFormat.test(source);
-      },
-      getJSON({ source }) {
-        return fetch(buildMyUrlScheme(source)).then(response => response.json());
-      }
+  {
+    use({ source }) {
+      return myUrlFormat.test(source);
+    },
+    getArticles({ source }) {
+      return fetch(buildMyUrlScheme(source)).then(response => response.json().data);
     }
+  }
   ]
 });
 
-const json = await proxy.get("getJSON", { source: "my-json-url" });
+const json = await proxy.get("getArticles", { source: "my-json-url" });
 ```
 
 
@@ -103,8 +103,4 @@ import { handler } from "technik-sde/foxy";
 // handler.unsplash
 // handler.image
 // handler.video
-
-
-
-
-
+```
