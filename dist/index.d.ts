@@ -7,3 +7,4 @@ declare const handler: {
     video: Handler;
 };
 export { Foxy, Options, Handler, Request, URLRequest, InfoRequest, handler, utils };
+export default Foxy;
