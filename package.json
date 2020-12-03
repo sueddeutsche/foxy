@@ -4,9 +4,12 @@
   "description": "",
   "main": "dist/foxy.js",
   "types": "dist/index.d.ts",
+  "module": "distmodule/index.js",
   "scripts": {
     "build": "rm -rf dev; webpack",
-    "dist": "rm -rf dist; NODE_ENV=production webpack -p",
+    "dist": "rm -rf dist; yarn dist:es5; yarn dist:module",
+    "dist:es5": "NODE_ENV=production webpack -p",
+    "dist:module": "tsc --outDir distmodule",
     "lint": "eslint test/**/* src/**/*",
     "test": "TS_NODE_PROJECT=./test/tsconfig.json mocha -r ts-node/register --require ./test/setup.ts 'test/**/*.test.ts'",
     "prepublishOnly": "npm run dist"
